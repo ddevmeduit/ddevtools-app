@@ -2,32 +2,35 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]  # Run on pushes to main branch
+    branches: [main]
 
 permissions:
+  contents: read
   pages: write
   id-token: write
-  contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout the repo
+      # Checkout the repo
       - uses: actions/checkout@v4
 
-      # 2. Setup Node.js
+      # Setup Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3. Install dependencies
+      # Install dependencies
       - run: npm ci
 
-      # 4. Build the project (tsc + vite)
+      # Build the project
       - run: npm run build
 
-      # 5. Deploy the dist folder to GitHub Pages
-      - uses: actions/deploy-pages@v4
+      # Upload the dist folder as a Pages artifact
+      - uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist
+          path: ./dist
+
+      # Deploy the artifact to GitHub Pages
+      - uses: actions/deploy-pages@v4
