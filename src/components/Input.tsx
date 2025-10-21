@@ -41,7 +41,7 @@ const Input = ({
         <div className="w-full px-3">
             {label && (<Label label={label} htmlFor={id} />)}
             <div className="relative">
-                <input className="appearance-none block w-full bg-slate-200 text-gray-700 rounded py-3 px-4 mb-3 focus:outline-none" id={id} type={type} placeholder={placeholder} value={value} onChange={onChange} readOnly={readOnly} />
+                <input className="appearance-none block w-full bg-slate-100 text-gray-700 rounded py-3 px-4 mb-3 focus:outline-none" id={id} type={type} placeholder={placeholder} value={value} onChange={onChange} readOnly={readOnly} />
                 <div className="absolute bottom-2 right-2">
                     {children}
                 </div>
